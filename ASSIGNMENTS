@@ -17,7 +17,7 @@ The int main() function in the main.c file, controlling the basic flow control o
 2) THE MAP PARSER FUNCTIONS  /
 ----------------------------/
 
-Who: !   E M P T Y   !
+Who: Gao Ning
 
 What:
 The map.c file - all the functions reading data files and returning actual usable variables, and also the other way around - functions that save the game state into the data files.
