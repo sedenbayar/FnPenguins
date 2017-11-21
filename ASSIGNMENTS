@@ -17,7 +17,7 @@ The int main() function in the main.c file, controlling the basic flow control o
 2) THE MAP PARSER FUNCTIONS  /
 ----------------------------/
 
-Who: Gao Ning
+Who: Dawid
 
 What:
 The map.c file - all the functions reading data files and returning actual usable variables, and also the other way around - functions that save the game state into the data files.
@@ -35,7 +35,7 @@ The control.c file, including functions handling the back-end of the playable pa
 4) THE DISPLAY FUNCTIONS  /
 -------------------------/
 
-Who: Dawid
+Who: Gao Ning
 
 What:
 The display.c file, including the front-end of the playable part of the game - the entire user interface. Displaying the map, the current scores, the current player taking the turn, etc.
