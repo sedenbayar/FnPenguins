@@ -1,13 +1,11 @@
-
-#include<stdio.h>
+#include <stdio.h>
 #include "display.h"
-#define SIZE 20
 
 void map_big();
 int main()
 {
     char data[100][100] = {
-        
+
                             {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                             {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                             {' ',' ',' ',' ',' ',' ','1','1','2','1','A','2','1','1',' ',' ',' ',' ',' ',' '},
@@ -29,40 +27,10 @@ int main()
                             {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                             {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
     };
-        int rows = 20;
+    int rows = 20;
     int columns = 20;
-    
+
     print_map(data, rows, columns);
-    
-   
+
     return 0;
 }
-
-void map_big(){
-    
-    char map[SIZE][SIZE];
-    for(int i=0;i<SIZE;i++){
-        for(int j=0;j<SIZE;j++)
-            if(i==0 || j==0 || i==(SIZE-1) || j==(SIZE-1))
-                map[i][j]=9;
-            else map[i][j]=0;
-        
-    }
-    for(int i=0;i<SIZE;i++)
-    {
-        for(int j=0;j<SIZE;j++){
-            if(9==map[i][j])
-                printf("*");
-            else printf(" ");
-        }
-        printf("\n");
-    }
-    
-    
-    
-    
-}
-
-
-
-
