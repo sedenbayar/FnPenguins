@@ -7,16 +7,15 @@
 //
 
 #include "display.h"
-#define SIZE 20
 
 void print_map(char data[100][100], int rows, int columns){
-    for(int i=0;i<columns;i++){
-        for(int j=0;j<rows;j++){
-            
+    int i,j;
+    for(i=0;i<columns;i++){
+        for(j=0;j<rows;j++){
+
             printf(" %c ",data[i][j]);
-            
+
         }
         printf("\n");
-        }
-    
+    }
 }
