@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "display.h"
 
-void map_big();
 int main()
 {
     char data[100][100] = {
