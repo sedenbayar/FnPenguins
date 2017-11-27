@@ -11,7 +11,11 @@
 Who: Seden
 
 What:
-The int main() function in the main.c file, controlling the basic flow control of the app, and putting together all the lesser functions.
+The int main() function, controlling the basic flow control of the app, and putting together all the lesser functions.
+There will be 3 files containing various version of that function:
+  (*) main_int.c - for the interactive mode,
+  (*) main_auto.c - for the fully automatic mode,
+  (*) main_semi.c - for the semi-automatic mode.
 
 ------------------------------/
 2) THE MAP PARSER FUNCTIONS  /
@@ -39,3 +43,13 @@ Who: Gao Ning
 
 What:
 The display.c file, including the front-end of the playable part of the game - the entire user interface. Displaying the map, the current scores, the current player taking the turn, etc.
+
+
+------------------------------/
+5) MAP GENERATION FUNCTIONS  /
+----------------------------/
+
+Who: Gao Ning
+
+What:
+The mapgen.c file, handling the random generation of the map for the fully-interactive mode.
