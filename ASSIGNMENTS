@@ -44,7 +44,6 @@ Who: Gao Ning
 What:
 The display.c file, including the front-end of the playable part of the game - the entire user interface. Displaying the map, the current scores, the current player taking the turn, etc.
 
-
 ------------------------------/
 5) MAP GENERATION FUNCTIONS  /
 ----------------------------/
