@@ -5,6 +5,9 @@
 #ifndef DATASTRC_H_INCLUDED
 #define DATASTRC_H_INCLUDED
 
+#include <stdio.h>
+#include <stdlib.h>
+
 /* Instead of passing all the variables to each function, we can just
    wrap them together in a struct and pass the whole struct.
    To create a struct, define it like this:
@@ -34,7 +37,7 @@ struct Gmdt {
        The memory for this array should be allocated dynamically
        with the malloc() function, and with respect to the other
        variables in this struct, namely "rows" and "columns".    */
-       
+    
     int rows;
     int columns;
     /* These two variables determine the size of the map array, as
@@ -44,6 +47,8 @@ struct Gmdt {
     int max_players; // The total number of players for the current match
     int max_pngns; // The max/starting amount of penguins per player
     int scores[6]; // The score for every player
+    
+    int phase; // The current phase (1 for placement, 2 for movement)
     
     int ***pngns_pos;
     /* This is a 3d array (a triple pointer) that stores the position
