@@ -60,4 +60,4 @@ The mapgen.c file, handling the random generation of the map for the fully-inter
 Who: Dawid
 
 What:
-The datastrc.c file, containing the definition for the Gmdt (stands for "game data") struct, that will contain all the variables. Also, possibly a few ancillary functions that help with dynamic memory allocation.
+The datastrc.h file, containing the definition for the Gmdt (stands for "game data") struct, that will contain all the variables.
