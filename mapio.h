@@ -11,6 +11,9 @@
 // David //
 ///////////
 
+// Checks if a character is correct with respect to the structure
+int is_pos_correct(char c);
+
 /* The return value from this function will represent
    the success (if there were any errors, etc.).
    It will return 0 on success, and other values when
