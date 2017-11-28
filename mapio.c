@@ -18,27 +18,22 @@ int is_pos_correct(char c){
 
 int read_data(char* ifilename, struct Gmdt *gmdt){
     char* content;
-    int fsize;
     FILE* f = fopen(ifilename, "r");
 
-    // Determine the file size
-    fseek(f, 0L, SEEK_END);
-    fsize = (int)ftell(f);
-    rewind(f);
-
-    // Read the file
-    //content = (char*)malloc(fsize*sizeof(char));
-    int i;
+    int i; // Counter for the for loops
 
     // Populate the scores array with 0's
     for (i = 0; i < 6; i++)
         gmdt->scores[i] = 0;
 
-    int c;
+    // Read the file
+    char c; // the last read character
     int n; // the index of the line currently processed
-    int l; // the amount of characters in the current line
+    int l; // the index of the current character with respect to the current line
+    int lmax; // the biggest found amount of characters in a single map line
+    long pos; // the stored position, in order to read the map-part once again after measuring the size
 
-    for(i = 0, n = 0, l = 0; (c = fgetc(f)) != EOF; i++, l++){
+    for(i = 0, n = 0, l = 0, lmax = 0; (c = fgetc(f)) != EOF; i++, l++){
         // First line
         if(n == 0){
             // Read the current player index
@@ -71,10 +66,10 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
             }
         }
 
-        // Fifth line and further
+        // Fifth line and further - measure the size
         else if (n >= 4){
-            //if(!is_pos_correct(c)) return 4;
-            // TODO - Loading the map data
+            if (n == 4 && l == 0) pos = ftell(f); // Store the position
+            lmax = (l > lmax) ? l : lmax; // Keep lmax up to date
         }
 
         if(c == '\n'){
@@ -83,17 +78,27 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
         }
     }
 
-    // Debug values
-    for (i = 0; i < 6; i++)
-        printf("%d ", gmdt->scores[i]);
-    printf("\nplayer = %d\n", gmdt->crnt_player);
-    printf("maxplayer = %d\n", gmdt->max_players);
-    printf("maxpen = %d\n", gmdt->max_pngns);
-    printf("phase = %d\n", gmdt->phase);
+    gmdt->rows = n - 3;
+    gmdt->columns = gmdt->rows == 1 ? lmax + 1 : lmax;
 
+    // Allocate memory for the map array
+    gmdt->map = (char**)malloc(gmdt->columns*sizeof(char*));
+    for (i = 0; i < gmdt->columns; i++)
+        gmdt->map[i] = (char*)malloc(gmdt->rows*sizeof(char));
 
-    // DEBUG - Print it out
-    //printf("content = %s\n", content);
+    // Come back to the saved position
+    fseek(f, pos-1, SEEK_SET);
+    for(i = 0, n = 0, l = 0; (c = fgetc(f)) != EOF; i++, l++){
+        // Read map characters
+        if(c == '\n'){
+            //printf("New line break.\n");
+            n++;
+            l = -1;
+            continue;
+        }
+        //printf("Reading map[%d][%d]: %c\n", l, n, c);
+        gmdt->map[l][n] = c;
+    }
 
     fclose(f);
 
