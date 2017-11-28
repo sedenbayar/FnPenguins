@@ -8,13 +8,13 @@
 
 #include "display.h"
 
-void print_map(char data[100][100], int rows, int columns){
+void print_map(char **data, int rows, int columns){
     int i,j;
-    for(i=0;i<columns;i++){
+    for(i=0;i<rows;i++){
         if(!(i % 2))
             printf(" ");
-        for(j=0;j<rows;j++){
-            printf(" %c",data[i][j]);
+        for(j=0;j<columns;j++){
+            printf(" %c",data[j][i]);
         }
         printf("\n");
     }
