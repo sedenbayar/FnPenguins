@@ -6,15 +6,31 @@
 #define DATASTRC_H_INCLUDED
 
 /* Instead of passing all the variables to each function, we can just
-   wrap them together in a struct and pass the whole struct.          */
+   wrap them together in a struct and pass the whole struct.
+   To create a struct, define it like this:
+   struct Gmdt whatever;
+   Replacing "whatever" with a name. I recommend calling it "gmdt"
+   (all lowercase) everywhere, just for the sake of convenience.
+   
+   To access a variable from this struct, for example "rows", say:
+   whatever.rows
+   For example:
+   printf("%d", whatever.rows);
+   
+   To pass a struct into a function, just pass a pointer to it:
+   void some_function(struct Gmdt *whatever){
+       //function code goes here
+   }                                                                 */
 struct Gmdt {
     char **map;
     /* **map is a 2d array (pointer to a pointer) that stores the
        value of each point on the map as characters, accordingly
        to the data file structure.
+       
        To get a value of a specific point, use map[x][y], x and y
        obviously being the coordinates. x is the column and y is
        the row here.
+       
        The memory for this array should be allocated dynamically
        with the malloc() function, and with respect to the other
        variables in this struct, namely "rows" and "columns".    */
@@ -37,8 +53,10 @@ struct Gmdt {
        p - the index of the player,
        r - the index of the penguin,
        n - which coordinate (0 for x, 1 for y).
+       
        Similarly, to get an array of size 2, containing both coordinates:
        pngns_pos[p][r].
+       
        The size of each dimension of this array should be with respect to
        the other variables from this struct, namely:
        pngns_pos[max_players][max_pngns][2].                              */
