@@ -20,10 +20,16 @@
    For example:
    printf("%d", whatever.rows);
    
-   To pass a struct into a function, just pass a pointer to it:
+   To create a function that takes a struct as an argument, just take
+   a pointer to it:
    void some_function(struct Gmdt *whatever){
        //function code goes here
-   }
+   }.
+   
+   Similarly, to pass a struct into such function so that it can alter
+   the struct directly, use the "&" operator, just like in scanf:
+   some_function(&whatever);
+   
    However, when having just a pointer to the struct, one needs to
    get the values using the -> operator instead. For example:
    whatever->rows
