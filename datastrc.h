@@ -23,7 +23,11 @@
    To pass a struct into a function, just pass a pointer to it:
    void some_function(struct Gmdt *whatever){
        //function code goes here
-   }                                                                 */
+   }
+   However, when having just a pointer to the struct, one needs to
+   get the values using the -> operator instead. For example:
+   whatever->rows
+   Instead of whatever.rows.                                         */
 struct Gmdt {
     char **map;
     /* **map is a 2d array (pointer to a pointer) that stores the
