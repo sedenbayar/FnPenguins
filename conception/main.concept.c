@@ -5,16 +5,9 @@
 #include "display.h"
 #include "mapio.h"
 #include "control.h"
+#include "datastrc.h"
 
 int main(int argc, char **argv){
-  char **map; //2-d array of size defined later with malloc()
-  int rows, columns; // Map dimensions
-  int crnt_player; // The current player index
-  int max_players; // Maximum amount of players
-  int max_pngns; // Amount of penguins per player
-  int scores[6]; // The score for each player
-  int ***pngns_pos; //3-d array containing positions of the penguins
-  //pngns_pos[player id][penguin id][0 or 1 stand for x or y]
 
   // File: mapio.c
   // A function that will fill the variables according to the data
