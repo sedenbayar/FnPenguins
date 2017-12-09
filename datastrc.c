@@ -11,3 +11,13 @@ void allocate_memory(struct Gmdt *gmdt){
     for (i = 0; i < gmdt->columns; i++)
         gmdt->map[i] = (char*)malloc(gmdt->rows*sizeof(char));
 }
+
+void allocate_pngns(struct Gmdt *gmdt){
+    gmdt->pngns_pos = (int***)malloc(gmdt->max_players*sizeof(int**));
+    int i, j;
+    for (i = 0; i < gmdt->max_players; i++)
+        gmdt->pngns_pos[i] = (int**)malloc(gmdt->max_pngns*sizeof(int*));
+    for (i = 0; i < gmdt->max_players; i++)
+        for (j = 0; j < gmdt->max_pngns; j++)
+            gmdt->pngns_pos[i][j] = (int*)malloc(2*sizeof(int));
+}
