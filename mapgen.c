@@ -1,3 +1,7 @@
+/////////////////
+// mapgen.c    //
+// by Gao Ning //
+/////////////////
 #include "mapgen.h"
 #include "datastrc.h"
 
