@@ -77,4 +77,8 @@ struct Gmdt {
        pngns_pos[max_players][max_pngns][2].                              */
 };
 
+/* Call this function to dynamically allocate memory, but NOT BEFORE the
+   gmdt struct has the rows and columns values set!                       */
+void allocate_memory(struct Gmdt *gmdt);
+
 #endif // DATASTRC_H_INCLUDED
