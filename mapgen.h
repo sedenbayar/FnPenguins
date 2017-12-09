@@ -10,5 +10,11 @@
 #define mapgen_h
 
 #include <stdio.h>
+#include<time.h>
+#include "datastrc.h"
+
+int rand();
+int random_number(int min, int max);
+void generate_map(struct Gmdt *gmdt);
 
 #endif /* mapgen_h */
