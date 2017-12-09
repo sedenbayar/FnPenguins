@@ -78,8 +78,13 @@ struct Gmdt {
        pngns_pos[max_players][max_pngns][2].                              */
 };
 
-/* Call this function to dynamically allocate memory, but NOT BEFORE the
-   gmdt struct has the rows and columns values set!                       */
+/* Call this function to dynamically allocate memory for the map array, 
+   but NOT BEFORE the gmdt struct has the rows and columns values set!    */
 void allocate_memory(struct Gmdt *gmdt);
+
+/* Call this function to dynamically allocate memory for the pngns_pos
+   array, but NOT BEFORE the gmdt struct has the max_players and max_pngns
+   values set!                                                            */
+void allocate_pngns(struct Gmdt *gmdt);
 
 #endif // DATASTRC_H_INCLUDED
