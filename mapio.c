@@ -48,7 +48,8 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
         else if (n == 1){
             if(l == 0) {
                 gmdt->max_players = c - 48;
-                if(gmdt->max_players > 5) return 2;
+                if(gmdt->max_players > 6) return 2;
+                else if(gmdt->max_players < 2) return 3;
             }
         }
         // Third line
@@ -62,7 +63,7 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
             if(l == 0){
                 if (c == 'p') gmdt->phase = 1;
                 else if (c == 'm') gmdt->phase = 2;
-                else return 3;
+                else return 4;
             }
         }
 
