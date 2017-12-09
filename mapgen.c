@@ -18,8 +18,8 @@ void generate_map(struct Gmdt *gmdt){
     gmdt->columns=SIZE;
     for(i=0;i<SIZE;i++){
         for(j=0;j<SIZE;j++){
-           gmdt->map[i][j]=random_number(0,3);
-            if(gmdt->map[i][j]==0)
+           gmdt->map[i][j]=random_number('0','3');
+            if(gmdt->map[i][j]=='0')
             gmdt->map[i][j]=' ';
          
         }
