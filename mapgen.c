@@ -20,6 +20,9 @@ void generate_map(struct Gmdt *gmdt){
     SIZE=random_number(15,25);
     gmdt->rows=SIZE;
     gmdt->columns=SIZE;
+    
+    allocate_memory(gmdt);
+    
     for(i=0;i<SIZE;i++){
         for(j=0;j<SIZE;j++){
            gmdt->map[i][j]=random_number('0','3');
