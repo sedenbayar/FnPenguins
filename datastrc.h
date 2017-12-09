@@ -87,4 +87,12 @@ void allocate_memory(struct Gmdt *gmdt);
    values set!                                                            */
 void allocate_pngns(struct Gmdt *gmdt);
 
+/* Call this function at the very end, after you're 100% certain the
+   map array from the gmdt struct will no longer be needed                */
+void free_memory(struct Gmdt *gmdt);
+
+/* Call this function at the very end, after you're 100% certain the
+   pngns_pos array from the gmdt struct will no longer be needed          */
+void free_pngns(struct Gmdt *gmdt);
+
 #endif // DATASTRC_H_INCLUDED
