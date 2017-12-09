@@ -45,8 +45,9 @@ struct Gmdt {
        the row here.
        
        The memory for this array should be allocated dynamically
-       with the malloc() function, and with respect to the other
-       variables in this struct, namely "rows" and "columns".    */
+       with the allocate_memory() function, but this function can
+       only be used if the "rows" and "columns" values are already
+       specified!                                                    */
     
     int rows;
     int columns;
