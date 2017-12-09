@@ -1,3 +1,7 @@
+////////////////
+// datastrc.c //
+// by David   //
+////////////////
 #include "datastrc.h"
 #include <stdlib.h>
 
