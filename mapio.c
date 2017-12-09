@@ -82,9 +82,7 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
     gmdt->columns = gmdt->rows == 1 ? lmax + 1 : lmax;
 
     // Allocate memory for the map array
-    gmdt->map = (char**)malloc(gmdt->columns*sizeof(char*));
-    for (i = 0; i < gmdt->columns; i++)
-        gmdt->map[i] = (char*)malloc(gmdt->rows*sizeof(char));
+    allocate_memory(gmdt);
 
     // Come back to the saved position
     fseek(f, pos-1, SEEK_SET);
