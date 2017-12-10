@@ -17,9 +17,12 @@ int is_pos_correct(char c){
 }
 
 int read_data(char* ifilename, struct Gmdt *gmdt){
-    char* content;
     FILE* f = fopen(ifilename, "r");
-
+    if (!f){
+        perror("[ERR]\t(read_data())");
+        return -1;
+    }
+    
     int i; // Counter for the for loops
 
     // Populate the scores array with 0's
@@ -103,6 +106,7 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
 
     return 0;
 }
+
 /////////
 // Can //
 /////////
