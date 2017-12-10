@@ -103,3 +103,45 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
 
     return 0;
 }
+/////////
+// Can //
+/////////
+void save_file(char* filename, struct Gmdt *gmdt){
+	FILE *f = fopen(filename, "w");
+
+	/*printf("Name of the file = %s\n", filename);
+	fprintf(f, "dgsdhsdhs %d", 5);*/
+	fprintf(f, "%d " , gmdt->crnt_player);
+	int i;
+	for (i = 0; i < gmdt->max_players; i++){
+        if (gmdt->scores[i] / 10 != 0){
+            fprintf(f,"%d " , gmdt->scores[i]);
+        } else {
+            fprintf(f,"0%d ", gmdt->scores[i]);
+        }
+	}
+	fprintf(f, "\n%d", gmdt->max_players);
+	fprintf(f, "\n%d", gmdt->max_pngns);
+	if (gmdt->phase == 1 ){
+        fprintf(f, "\nplacement");
+
+
+	}
+	else{
+        fprintf(f, "\nmovement");
+	}
+
+	fprintf(f, "\n");
+
+	int d ;
+	for (i = 0; i<gmdt->rows; i++ ){
+        for ( d = 0; d<gmdt->columns; d++){
+            fprintf(f, "%c" , gmdt->map[d][i]);
+
+        }
+
+        fprintf(f,"\n");
+	}
+
+	fclose(f);
+}
