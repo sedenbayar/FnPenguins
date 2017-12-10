@@ -27,6 +27,6 @@ int read_data(char* ifilename, struct Gmdt *gmdt);
 /////////
 // Can //
 /////////
-int write_data(char* ofilename, struct Gmdt *gmdt);
+void save_file(char* ofilename, struct Gmdt *gmdt);
 
 #endif // MAPIO_H_INCLUDED
