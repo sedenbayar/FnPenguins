@@ -18,7 +18,7 @@ int is_pos_correct(char c){
 
 int read_data(char* ifilename, struct Gmdt *gmdt){
     FILE* f = fopen(ifilename, "r");
-    if (!f){
+    if (f == NULL){
         perror("[ERR]\t(read_data())");
         return -1;
     }
