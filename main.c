@@ -39,6 +39,17 @@ int main(int argc, char* argv)
     // Allocate memory for the penguins
     allocate_pngns(&gmdt);
 
+    /*print_map(gmdt.map, gmdt.rows, gmdt.columns);
+    printf("Max players = %d\nMax penguins = %d\n", gmdt.max_players, gmdt.max_pngns);
+    save_file("output.txt", &gmdt);*/
+
+    /*int i, j, k;
+    for (i = 0; i < gmdt.max_players; i++)
+        for (j = 0; j < gmdt.max_pngns; j++)
+            printf("(%d, %d)\n", gmdt.pngns_pos[i][j][0], gmdt.pngns_pos[i][j][1]);*/
+
+    save_file("output.txt",&gmdt);
+
     // Player input here
     placement(gmdt.max_players, gmdt.max_pngns, gmdt.pngns_pos, gmdt.map, gmdt.rows, gmdt.columns);
     gmdt.phase = 2;
@@ -54,3 +65,4 @@ int main(int argc, char* argv)
 
     return 0;
 }
+
