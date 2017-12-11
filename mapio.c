@@ -7,22 +7,21 @@
 ///////////
 // David //
 ///////////
+
 int is_pos_correct(char c){
-    if (c == ' ') return 1;
-    if (c >= '1' && c <= '3') return 1;
-    if (c >= 'a' && c <= 'f') return 1;
-    if (c >= 'A' && c <= 'A') return 1;
-    if (c >= 'U' && c <= 'Z') return 1;
+    if (c == '\n' || c == '\t' || c == '\r') return -5; // New line
+    if (c == ' ') return -4; // Empty field
+    if (c >= '1' && c <= '3') return 48 - c; // -1 to -3 for various amounts of fish
+    if (c >= 'a' && c <= 'f') return c - 96; // 1-6 for penguins of consecutive players
+    if (c >= 'A' && c <= 'F') return c - 64; // 7-12 for penguins of consecutive players
+    if (c >= 'U' && c <= 'Z') return c - 84; // 13-18 for penguins of consecutive players
     return 0;
 }
 
 int read_data(char* ifilename, struct Gmdt *gmdt){
+    char* content;
     FILE* f = fopen(ifilename, "r");
-    if (f == NULL){
-        perror("[ERR]\t(read_data())");
-        return -1;
-    }
-    
+
     int i; // Counter for the for loops
 
     // Populate the scores array with 0's
@@ -85,8 +84,13 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
     gmdt->rows = n - 3;
     gmdt->columns = gmdt->rows == 1 ? lmax + 1 : lmax;
 
-    // Allocate memory for the map array
+    // Allocate memory for the map array and pngns_pos array
     allocate_memory(gmdt);
+    allocate_pngns(gmdt);
+
+    // Initialize counters for pngns_pos
+    int pngn[6] = {0}; // The index of the next penguin per player
+    int ipc;
 
     // Come back to the saved position
     fseek(f, pos-1, SEEK_SET);
@@ -100,11 +104,18 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
         }
         //printf("Reading map[%d][%d]: %c\n", l, n, c);
         gmdt->map[l][n] = c;
+
+        ipc = is_pos_correct(c);
+        if(!ipc || ipc > gmdt->max_players)
+            return 5;
+        else if (ipc > 0){
+            ipc = ipc > 6 ? (ipc > 12 ? ipc - 12 : ipc - 6) : ipc; // get just the player number, disregarding the points
+            gmdt->pngns_pos[ipc-1][pngn[ipc-1]][0] = l;
+            gmdt->pngns_pos[ipc-1][pngn[ipc-1]][1] = n;
+            pngn[ipc-1]++;
+        }
     }
-    
-    // Allocate memory for the pngns array
-    allocate_pngns(gmdt);
-    
+
     fclose(f);
 
     return 0;
