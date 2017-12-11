@@ -78,18 +78,18 @@ bool is_move_possible(int x,int y,int max_pl, int max_pg,int ***pngns_pos,char *
 }
 void a_turn(int max_pl,int max_pg,int ***pngns_pos,char **map,int scores[6],int rows,int cols)
 {
-    int i=0,j=0;
-    for(i;i<max_pl;i++)
+    int i=0,j=0,k=0;
+    for(j;j<max_pg;j++)
     {
-        printf("\n\nPlayer %d's turn!\n\n",i);
-        printf("SCORES:\n");
-        for(j=0;j<max_pl;j++)
+        for(i=0;i<max_pl;i++)
         {
-            printf("P%d: %d\t", j, scores[j]);
-        }
-        printf("\n\n");
-        for(j=0;j<max_pg;j++)
-        {
+            system("cls");
+            printf("%Player %d's turn!\n",i);
+            for(k=0;k<max_pl;k++)
+            {
+                printf("P%d: %d\t", k, scores[k]);
+            }
+            printf("\n");
             print_map(map,rows,cols);
             move_penguin(i,j,max_pl,max_pg,pngns_pos,map,scores,rows,cols);
         }
@@ -112,6 +112,7 @@ void placement(int max_pl,int max_pg,int ***pngns_pos,char **map,int rows,int co
     {
         for(j=0;j<max_pg;j++)
         {
+            system("cls");
             print_map(map,rows,cols);
             printf("\nPlease, enter initial coordinates for player %d, penguin %d: ",i,j);
             scanf("%d",&x);
