@@ -14,7 +14,6 @@
 // !IMPORTANT I was not sure about pngns_pos[][][], i mean, thought it would be like max 6 players and max 2 penguins per player
 // You can just use the pointer, the size is dynamic - just use ***pngns_pos # David
 
-void placement(int max_pl,int max_pg,int ***pngns_pos,char **map,int rows,int cols);
 int count_points(int x,int y,char **map,int scores[6]);
 bool is_move_possible(int x,int y,int max_pl, int max_pg,int ***pngns_pos,char **map,int rows,int cols); //checks if move is possible
 void a_turn(int max_pl,int max_pg,int ***pngns_pos,char **map,int scores[6],int rows,int cols);  //single turn for all players, 1st player moves all of his pngns, then second one etc.

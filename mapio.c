@@ -106,10 +106,10 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
         gmdt->map[l][n] = c;
 
         ipc = is_pos_correct(c);
+        ipc = ipc > 6 ? (ipc > 12 ? ipc - 12 : ipc - 6) : ipc; // get just the player number, disregarding the points
         if(!ipc || ipc > gmdt->max_players)
             return 5;
         else if (ipc > 0){
-            ipc = ipc > 6 ? (ipc > 12 ? ipc - 12 : ipc - 6) : ipc; // get just the player number, disregarding the points
             gmdt->pngns_pos[ipc-1][pngn[ipc-1]][0] = l;
             gmdt->pngns_pos[ipc-1][pngn[ipc-1]][1] = n;
             pngn[ipc-1]++;
@@ -155,10 +155,9 @@ void save_file(char* filename, struct Gmdt *gmdt){
 	for (i = 0; i<gmdt->rows; i++ ){
         for ( d = 0; d<gmdt->columns; d++){
             fprintf(f, "%c" , gmdt->map[d][i]);
-
         }
 
-        fprintf(f,"\n");
+        if (i != gmdt->rows - 1) fprintf(f,"\n");
 	}
 
 	fclose(f);

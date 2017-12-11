@@ -10,6 +10,7 @@
 #define display_h
 
 #include <stdio.h>
+#include "datastrc.h"
 
 
 void print_map(char **data, int rows, int columns);

@@ -18,7 +18,6 @@ int is_pos_correct(char c);
    the success (if there were any errors, etc.).
    It will return 0 on success, and other values when
    encountering specific errors regarding the file:
-   -1 - error opening the file
    1 - current player index is larger than 5
    2 - the max amount of players is greater than 6
    3 - the max amount of player is smaller than 2
