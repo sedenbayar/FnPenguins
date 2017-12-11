@@ -13,8 +13,8 @@ int is_pos_correct(char c){
     if (c == ' ') return -4; // Empty field
     if (c >= '1' && c <= '3') return 48 - c; // -1 to -3 for various amounts of fish
     if (c >= 'a' && c <= 'f') return c - 96; // 1-6 for penguins of consecutive players
-    if (c >= 'A' && c <= 'F') return c - 64; // 7-12 for penguins of consecutive players
-    if (c >= 'U' && c <= 'Z') return c - 84; // 13-18 for penguins of consecutive players
+    if (c >= 'A' && c <= 'F') return c - 64 + 6; // 7-12 for penguins of consecutive players
+    if (c >= 'U' && c <= 'Z') return c - 84 + 12; // 13-18 for penguins of consecutive players
     return 0;
 }
 
