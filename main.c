@@ -37,8 +37,6 @@ int main(int argc, char* argv)
     // Initialize settings
     init_settings(&gmdt);
 
-    print_map(gmdt.map, gmdt.rows, gmdt.columns);
-
     // Allocate memory for the penguins
     allocate_pngns(&gmdt);
 
@@ -53,7 +51,11 @@ int main(int argc, char* argv)
     // Player input here
     placement(gmdt.max_players, gmdt.max_pngns, gmdt.pngns_pos, gmdt.map, gmdt.rows, gmdt.columns);
     gmdt.phase = 2;
-    a_turn(gmdt.max_players, gmdt.max_pngns, gmdt.pngns_pos, gmdt.map, gmdt.scores, gmdt.rows, gmdt.columns);
+    system("cls");
+    while(1)
+    {
+        a_turn(gmdt.max_players, gmdt.max_pngns, gmdt.pngns_pos, gmdt.map, gmdt.scores, gmdt.rows, gmdt.columns);
+    }
 
     // Free memory
     free_memory(&gmdt);
