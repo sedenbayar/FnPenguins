@@ -101,7 +101,10 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
         //printf("Reading map[%d][%d]: %c\n", l, n, c);
         gmdt->map[l][n] = c;
     }
-
+    
+    // Allocate memory for the pngns array
+    allocate_pngns(gmdt);
+    
     fclose(f);
 
     return 0;
