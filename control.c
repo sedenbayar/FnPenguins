@@ -43,21 +43,21 @@ void move_penguin(int pl,int pg,int max_pl, int max_pg,int ***pngns_pos,char **m
             cant_i=1;
         }
     }
-    int pts=count_points(a,b,map,scores);;
+    int pts=count_points(a,b,map,scores);
     scores[pl]+=pts;
     map[a][b] = ' ';
     printf("Your penguin is successfully moving to (%d,%d).\n",x,y);
     pngns_pos[pl][pg][0]=x;
     pngns_pos[pl][pg][1]=y;
-    if (pts == 1)
+    if (map[x][y]=='1')
     {
         map[x][y]='a'+pl;
     }
-    else if (pts == 2)
+    else if (map[x][y]=='2')
     {
         map[x][y]='A'+pl;
     }
-    else if (pts == 3)
+    else if (map[x][y]=='3')
     {
         map[x][y]='U'+pl;
     }
