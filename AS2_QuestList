@@ -16,7 +16,7 @@ If there is a deadline for a specific assignment, the date for it is given.
 
 * [i-3π-sin x] Save the situation when sh#t goes south
 
-* [01-08-2018] Create the most-basic, fundamental functions for the AI 
+* [08-01-2018] Create the most-basic, fundamental functions for the AI 
 	/ai.c, .h/
 
 * Write a library for some cool OS-specific command line utilities
@@ -28,7 +28,7 @@ If there is a deadline for a specific assignment, the date for it is given.
  Ning |
 ------/
 
-* [01-08-2018] Create a compileable main.c file for a program that will
+* [08-01-2018] Create a compileable main.c file for a program that will
 	do the following:
 	1. Read values for max_players and max_pngns from the user
 	2. Randomly generate a map (using the existing generate_map() function)
@@ -42,7 +42,7 @@ If there is a deadline for a specific assignment, the date for it is given.
  Adam |
 ------/
 
-* [01-08-2018] Work with David on the AI [look up his assignments]
+* [08-01-2018] Work with David on the AI [look up his assignments]
 
 * Alter the print_map() function, make it look cool and more readable
 
@@ -50,9 +50,9 @@ If there is a deadline for a specific assignment, the date for it is given.
  Seden |
 -------/
 
-* [01-08-2018] Correct the mainauto.c and mainsemi.c files with respect to the given comments.
+* [08-01-2018] Correct the mainauto.c and mainsemi.c files with respect to the given comments.
 
-* [01-08-2018] Write a mainint.c file for the interactive mode. You might use the existing main.c file as an...
+* [08-01-2018] Write a mainint.c file for the interactive mode. You might use the existing main.c file as an...
 	...inspiration.
 
 -------\
@@ -61,7 +61,7 @@ If there is a deadline for a specific assignment, the date for it is given.
 
 * Change the control.c functions, so that they take a pointer to struct Gmdt as an argument.
 
-* [01-08-2018] Improve the is_move_possible() function, so that it allows only for proper movement. Put some
+* [08-01-2018] Improve the is_move_possible() function, so that it allows only for proper movement. Put some
 	restrictions on that teleportation power the penguins currently posses.
 
 -----\
