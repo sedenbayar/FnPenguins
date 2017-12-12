@@ -1,0 +1,120 @@
+#========================#
+#------------------------#
+# Assignments #1 Summary #
+#------------------------#
+#========================#
+
+DISCLAIMER: In approximate progress, the key word
+is "approximate". If it's less than 100%, it just
+means that there is room for improvements, and it
+is known, what exactly those improvements may be.
+
+100% basically means, that this part, for now, is
+finished. There might be a way to further improve
+this part, but it's still unknown at this moment.
+
+----------------/
+ CONTROL.C, .H /
+--------------/
+
+* Approximate progress: 35%
+
+* Definition list:
+
+    // Jakub //
+    - int count_points()
+    - bool is_move_possible()
+    - void move_penguin()
+    - void a_turn()
+    - void placement()
+
+-----------------/
+ DATASTRC.C, .H /
+---------------/
+
+* Approximate progress: 100%
+
+* Definition list:
+    
+    // David //
+    - struct Gmdt
+    - void allocate_memory()
+    - void allocate_pngns()
+    - void free_memory()
+    - void free_pngns()
+
+----------------/
+ DISPLAY.C, .H /
+--------------/
+
+* Approximate progress: 65%
+
+* Definition list:
+    
+    // Ning //
+    - void print_map()
+
+---------------/
+ MAPGEN.C, .H /
+-------------/
+
+* Approximate progress: 90%
+
+* Definition list:
+    
+    // Ning //
+    - int random_number()
+    - void generate_map()
+
+--------------/
+ MAPIO.C, .H /
+------------/
+
+* Approximate progress: 90%
+
+* Definition list:
+    
+    // David //
+    - int is_pos_correct()
+    - int read_data()
+    
+    // Can //
+    - void save_file()
+
+-------------/
+ MAIN FILES /
+-----------/
+
+Quick Test Interactive Mode
+---------------------------
+* Approximate progress: n/a
+
+* Definition list:
+
+    // David //
+    - void init_settings()
+    - int main()
+
+Automatic Mode [One-Step Bot]
+-----------------------------
+* Approximate progress: 10% /pending changes/
+
+* Definition list:
+    
+    // Seden //
+    - int main() /pending changes/
+
+Semi-Automatic Mode [One-Step Human]
+------------------------------------
+* Approximate progress: 10% /pending changes/
+
+* Definition list:
+    
+    // Seden //
+    - int main() /pending changes/
+
+Interactive Mode [Entire Game Human]
+------------------------------------
+* Approximate progress: 0% | 40% (from the quick test of this mode)
+
+* Definition list: null
