@@ -37,6 +37,12 @@
     }
 #else
     const int os = OS_UNKNWN;
+
+    void set_colors(int text, int bg){
+    }
+
+    void reset_colors(){
+    }
 #endif
 #endif
 
@@ -59,9 +65,14 @@ int clrprintf(int text_clr, int bg_clr, const char *format, ...){
 }
 
 int clear(){
-    if (os == OS_WIN)
+    if (os == OS_WIN){
         system("cls");
-    else if (os == OS_LINUX)
+        return 1;
+    }
+    else if (os == OS_LINUX){
         system("clear");
-    return 1;
+        return 1;
+    } else {
+        return 0;
+    }
 }
