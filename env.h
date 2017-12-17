@@ -69,8 +69,13 @@
 
     #define DEFAULT_BG 30
     #define DEFAULT_TEXT 97
+
+    void set_colors(int text, int bg);
+    void reset_colors();
 #endif
 #endif
+
+const int COLORS[16];
 
 int clrprintf(int text_clr, int bg_clr, const char *format, ...);
 int clear();
