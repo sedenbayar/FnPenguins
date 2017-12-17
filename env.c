@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include "env.h"
 
 #define OS_WIN 1
@@ -9,33 +10,40 @@
 #if defined(_WIN32) || defined(_WIN64)
     const int os = OS_WIN;
     #include <windows.h>
+
+    int get_color_code(int text, int bg){
+        return text+16*bg;
+    }
+
+    void set_colors(int text, int bg){
+        HANDLE cnsl;
+        cnsl = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(cnsl, get_color_code(text, bg));
+    }
+
+    void reset_colors(){
+        set_colors(DEFAULT_TEXT, DEFAULT_BG);
+    }
 #else
 #ifdef __linux
     const int os = OS_LINUX;
+
+    void set_colors(int text, int bg){
+        printf("\e[%dm\e[%dm", text, bg+10);
+    }
+
+    void reset_colors(){
+        printf("\e[0m");
+    }
 #else
     const int os = OS_UNKNWN;
 #endif
 #endif
 
-int get_color_code(int text, int bg){
-    if (os == OS_WIN){
-        return text+16*bg;
-    }
-}
-
-void set_colors(int text, int bg){
-    if (os == OS_WIN){
-        HANDLE cnsl;
-        cnsl = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(cnsl, get_color_code(text, bg));
-    }
-}
-
-void reset_colors(){
-    if (os == OS_WIN){
-        set_colors(DEFAULT_TEXT, DEFAULT_BG);
-    }
-}
+const int COLORS[16] = { BLACK, GRAY, DARK_RED, DARK_YELLOW,
+                DARK_GREEN, DARK_AQUA, DARK_BLUE, DARK_PINK,
+                LIGHT_GRAY, RED, YELLOW, GREEN,
+                AQUA, BLUE, PINK, WHITE };
 
 int clrprintf(int text_clr, int bg_clr, const char *format, ...){
     set_colors(text_clr, bg_clr);
@@ -51,7 +59,9 @@ int clrprintf(int text_clr, int bg_clr, const char *format, ...){
 }
 
 int clear(){
-    if (os == OS_WIN){
+    if (os == OS_WIN)
         system("cls");
-    }
+    else if (os == OS_LINUX)
+        system("clear");
+    return 1;
 }
