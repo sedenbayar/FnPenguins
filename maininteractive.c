@@ -19,7 +19,7 @@ void init_settings(struct Gmdt *gmdt){
     }while(gmdt->max_pngns < 1);
 
     gmdt->phase = 1; // start with placement
-    gmdt->crnt_player = 0; // start from the first player
+    gmdt->crnt_player = 0; // game hasn't begun yet
 
     // Populate score array with 0's
     int i;
@@ -36,20 +36,27 @@ int main(int argc, char* argv)
     // Initialize settings
     init_settings(&gmdt);
 
-    allocate_memory(&gmdt);
-
     // Allocate memory for the penguins
     allocate_pngns(&gmdt);
 
+    /*print_map(gmdt.map, gmdt.rows, gmdt.columns);
+    printf("Max players = %d\nMax penguins = %d\n", gmdt.max_players, gmdt.max_pngns);
+    save_file("output.txt", &gmdt);*/
+
+    /*int i, j, k;
+    for (i = 0; i < gmdt.max_players; i++)
+        for (j = 0; j < gmdt.max_pngns; j++)
+            printf("(%d, %d)\n", gmdt.pngns_pos[i][j][0], gmdt.pngns_pos[i][j][1]);*/
+
+    save_file("output.txt",&gmdt);
+
     // Player input here
-    placement(gmdt.max_players, gmdt.max_pngns, gmdt.pngns_pos, gmdt.map, gmdt.rows, gmdt.columns);
+    placement(&gmdt);
     gmdt.phase = 2;
-    gmdt.crnt_player = 0;
-    while(is_move_possible(&gmdt))
+    while(1)
     {
-        a_turn(gmdt.max_players, gmdt.max_pngns, gmdt.pngns_pos, gmdt.map, gmdt.scores, gmdt.rows, gmdt.columns);
+        a_turn(&gmdt);
     }
-    save_file(argv[2], &gmdt);
 
     // Free memory
     free_memory(&gmdt);
@@ -57,3 +64,4 @@ int main(int argc, char* argv)
 
     return 0;
 }
+
