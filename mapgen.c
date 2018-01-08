@@ -17,7 +17,7 @@ void generate_map(struct Gmdt *gmdt){
     int i,j;
     int SIZE;
     srand((unsigned int)time(NULL));
-    SIZE=random_number(16,22);
+    SIZE=random_number(15,18);
     gmdt->rows=SIZE;
     gmdt->columns=SIZE;
 

@@ -5,10 +5,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include "control.h"
-#include "mapio.h"
-#include "datastrc.h"
 
 #define Y_FIX 0
 
@@ -21,6 +18,7 @@ bool downleft(int dist,struct Gmdt *gmdt,int pg,int pl);
 bool upright(int dist,struct Gmdt *gmdt,int pg,int pl);
 bool right(int dist,struct Gmdt *gmdt,int pg,int pl);
 bool downright(int dist,struct Gmdt *gmdt,int pg,int pl);
+bool place_pg(struct Gmdt *gmdt,int j,int x,int y);
 
 void move_penguin(struct Gmdt *gmdt,int pg,int pl)//moving penguins function
 {
@@ -78,6 +76,44 @@ void move_penguin(struct Gmdt *gmdt,int pg,int pl)//moving penguins function
         gmdt->map[x][y]='U'+pl;
     }
 }
+bool move_penguin_ai(int dist,struct Gmdt *gmdt,int pg,int pl,int way)
+{
+    bool result;
+    int a = gmdt->pngns_pos[pl][pg][0];
+    int b = gmdt->pngns_pos[pl][pg][1];
+    switch(way)
+    {
+    case 1: result = upleft(dist, gmdt, pg, pl); break;
+    case 2: result = upright(dist, gmdt, pg, pl); break;
+    case 3: result = left(dist, gmdt, pg, pl); break;
+    case 4: result = right(dist, gmdt, pg, pl); break;
+    case 5: result = downleft(dist, gmdt, pg, pl); break;
+    case 6: result = downright(dist, gmdt, pg, pl); break;
+    default: result = 0; break;
+    }
+    if(result==true)
+    {
+        int pts=count_points(a,b,gmdt);
+        gmdt->scores[pl]+=pts;
+
+        gmdt->map[a][b] = ' ';
+        int x = gmdt->pngns_pos[pl][pg][0];
+        int y = gmdt->pngns_pos[pl][pg][1];
+        if (gmdt->map[x][y]=='1')
+        {
+            gmdt->map[x][y]='a'+pl;
+        }
+        else if (gmdt->map[x][y]=='2')
+        {
+            gmdt->map[x][y]='A'+pl;
+        }
+        else if (gmdt->map[x][y]=='3')
+        {
+            gmdt->map[x][y]='U'+pl;
+        }
+    }
+    return result;
+}
 void a_turn(struct Gmdt *gmdt)
 {
     int j=0,k=0;
@@ -85,7 +121,7 @@ void a_turn(struct Gmdt *gmdt)
     {
         for(gmdt->crnt_player = 1;gmdt->crnt_player<=(gmdt->max_players);gmdt->crnt_player++)
         {
-            system("cls");
+            clear();
             printf("%Player %d's turn!\n",gmdt->crnt_player);
             for(k=0;k<gmdt->max_players;k++)
             {
@@ -105,50 +141,61 @@ int count_points(int x,int y,struct Gmdt *gmdt)
     }
     return 0;
 }
-
 void placement(struct Gmdt *gmdt)
 {
     int x,y;
     int i=0,j=0;
-    bool is_correct = false;
     for(j=0;j<gmdt->max_pngns;j++)
     {
         for(gmdt->crnt_player=1; gmdt->crnt_player <= gmdt->max_players; gmdt->crnt_player++)
         {
-            is_correct = false;
-            system("cls");
+            clear();
             print_map(gmdt->map,gmdt->rows,gmdt->columns);
-            while(!is_correct)
+            while(true)
             {
                 printf("\nPlease, enter initial coordinates for player %d, penguin %d: ",gmdt->crnt_player,j);
                 scanf("%d",&x);
                 scanf("%d",&y);
-                if(gmdt->map[x][y] == '1')
-                    is_correct = true;
+                if(place_pg(gmdt,j,x,y))
+                    break;
                 else
                     printf("\nThe target floe must contain exactly 1 fish!");
             }
-            gmdt->pngns_pos[gmdt->crnt_player-1][j][0]=x;
-            gmdt->pngns_pos[gmdt->crnt_player-1][j][1]=y;
-            gmdt->map[x][y]='a'+gmdt->crnt_player-1;
         }
     }
 }
-
+bool place_pg(struct Gmdt *gmdt,int j,int x,int y)
+{
+    if(gmdt->map[x][y] == '1')
+    {
+        gmdt->pngns_pos[gmdt->crnt_player-1][j][0]=x;
+        gmdt->pngns_pos[gmdt->crnt_player-1][j][1]=y;
+        gmdt->map[x][y]='a'+gmdt->crnt_player-1;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 
 //PENGUINS' MOVEMENT:
 int xhex(int y,int d)
 {
     if(d>=0)
-        return d/2 + !((y + Y_FIX) % 2);
+        return (d + !((y + Y_FIX) % 2))/2;
     else
-        return d/2 - ((y + Y_FIX) % 2);
+        return (d - ((y + Y_FIX) % 2))/2;
 }
 bool upleft(int dist,struct Gmdt *gmdt,int pg,int pl)
 {
     int x=gmdt->pngns_pos[pl][pg][0];
     int y=gmdt->pngns_pos[pl][pg][1];
+
+    if (x+xhex(y,-dist) < 0 || y-dist < 0)
+        return false;
+
     int i=1,j=0,k=0;
     for(i=1;i<=dist;i++)
     {
@@ -172,6 +219,10 @@ bool left(int dist,struct Gmdt *gmdt,int pg,int pl)
 {
     int x=gmdt->pngns_pos[pl][pg][0];
     int y=gmdt->pngns_pos[pl][pg][1];
+
+    if (x-dist < 0)
+        return false;
+
     int i=1,j=0,k=0;
     for(i=1;i<=dist;i++)
     {
@@ -194,6 +245,10 @@ bool downleft(int dist,struct Gmdt *gmdt,int pg,int pl)
 {
     int x=gmdt->pngns_pos[pl][pg][0];
     int y=gmdt->pngns_pos[pl][pg][1];
+
+    if (x+xhex(y,-dist) < 0 || y+dist > gmdt->rows-1)
+        return false;
+
     int i=1,j=0,k=0;
     for(i=1;i<=dist;i++)
     {
@@ -217,6 +272,10 @@ bool upright(int dist,struct Gmdt *gmdt,int pg,int pl)
 {
     int x=gmdt->pngns_pos[pl][pg][0];
     int y=gmdt->pngns_pos[pl][pg][1];
+
+    if (x+xhex(y,dist) > gmdt->columns-1 || y-dist < 0)
+        return false;
+
     int i=1,j=0,k=0;
     for(i=1;i<=dist;i++)
     {
@@ -240,6 +299,10 @@ bool right(int dist,struct Gmdt *gmdt,int pg,int pl)
 {
     int x=gmdt->pngns_pos[pl][pg][0];
     int y=gmdt->pngns_pos[pl][pg][1];
+
+    if (x+dist > gmdt->columns-1)
+        return false;
+
     int i=1,j=0,k=0;
     for(i=1;i<=dist;i++)
     {
@@ -263,6 +326,10 @@ bool downright(int dist,struct Gmdt *gmdt,int pg,int pl)
 {
     int x=gmdt->pngns_pos[pl][pg][0];
     int y=gmdt->pngns_pos[pl][pg][1];
+
+    if (x+xhex(y,dist) > gmdt->columns-1 || y+dist > gmdt->rows-1)
+        return false;
+
     int i=1,j=0,k=0;
     for(i=1;i<=dist;i++)
     {

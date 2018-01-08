@@ -41,7 +41,7 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
             // Read the current player index
             if(l == 0) {
                 gmdt->crnt_player = c - 48;
-                if(gmdt->crnt_player > 5) return 1;
+                if(gmdt->crnt_player > 6) return 1;
             }
             else if((l >= 2) && !((l-2) % 3) && l < 19) gmdt->scores[(l-2)/3] += 10*(c - 48);
             else if((l >= 3) && !((l-3) % 3) && l < 19) gmdt->scores[(l-2)/3] += c - 48;
@@ -118,6 +118,20 @@ int read_data(char* ifilename, struct Gmdt *gmdt){
 
     fclose(f);
 
+    return 0;
+}
+
+int compare_files(char* lhs_fname, char* rhs_fname){
+    FILE *lf = fopen(lhs_fname, "r");
+    if (!lf) return -1;
+    FILE *rf = fopen(rhs_fname, "r");
+    if (!rf) return -2;
+
+    char lc, rc;
+    do {lc = getc(lf); rc = getc(rf);} while((lc != EOF) && (rc != EOF) && (lc == rc));
+    fclose(lf); fclose(rf);
+
+    if (lc == rc) return 1;
     return 0;
 }
 
