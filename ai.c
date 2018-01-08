@@ -4,18 +4,14 @@
 #define max(X,Y) ((X) > (Y) ? (X) : (Y))
 
 int count_pngns(struct Gmdt *gmdt, int player){
-    FILE *f;
-    f = fopen("moraz.txt", "w");
     int x, y, c = 0;
     int ipc;
     for (y = 0; y < gmdt->rows; y++)
         for (x = 0; x < gmdt->columns; x++){
             ipc = is_pos_correct(gmdt->map[x][y]);
-            fprintf(f, "\nipc = %d, player = %d, ipc-player = %d, ipc-player mod 6 = %d", ipc, player, ipc-player, (ipc-player)%6);
             if ((ipc > 0) && (!player || !((ipc-player) % 6)))
                 c++;
         }
-    fclose(f);
     return c;
 }
 
