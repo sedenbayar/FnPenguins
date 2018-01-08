@@ -4,10 +4,16 @@
 #include <stdbool.h>
 #include "datastrc.h"
 
-void placement(int max_pl,int max_pg,int ***pngns_pos,char **map,int rows,int cols);
-int count_points(int x,int y,char **map,int scores[6]);
-void move_penguin(int x,int y,int max_pl, int max_pg,int ***pngns_pos,char **map,int scores[6],int rows,int cols);
-bool is_move_possible(int pl,int pg,int max_pl, int max_pg,int ***pngns_pos,char **map,int rows,int cols);
-void a_turn(int max_pl,int max_pg,int ***pngns_pos,char **map,int scores[6],int rows,int cols);
+int count_points(int x,int y,struct Gmdt *gmdt);
+void a_turn(struct Gmdt *gmdt);  //single turn for all players, 1st player moves all of his pngns, then second one etc.
+
+bool upleft(int dist,struct Gmdt *gmdt,int pg,int pl);
+bool left(int dist,struct Gmdt *gmdt,int pg,int pl);
+bool downleft(int dist,struct Gmdt *gmdt,int pg,int pl);
+bool upright(int dist,struct Gmdt *gmdt,int pg,int pl);
+bool right(int dist,struct Gmdt *gmdt,int pg,int pl);
+bool downright(int dist,struct Gmdt *gmdt,int pg,int pl);
+void move_penguin(struct Gmdt *gmdt,int pg,int pl);
+void placement(struct Gmdt *gmdt);
 
 #endif // CONTROL_H_INCLUDED
