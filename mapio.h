@@ -24,6 +24,14 @@ int is_pos_correct(char c);
    4 - unknown phase name given                      */
 int read_data(char* ifilename, struct Gmdt *gmdt);
 
+/* The return value from this function will represent
+   the result or possible errors.
+   -1 - the first file couldn't be opened
+   -2 - the second file couldn't be opened
+   0 - files are not indentical
+   1 - files are indentical                          */
+int compare_files(char* lhs_fname, char* rhs_fname);
+
 /////////
 // Can //
 /////////
