@@ -116,21 +116,25 @@ bool move_penguin_ai(int dist,struct Gmdt *gmdt,int pg,int pl,int way)
 }
 void a_turn(struct Gmdt *gmdt)
 {
-    int j=0,k=0;
-    for(j;j<(gmdt->max_pngns);j++)
+    int j=0,k=0,i=0;
+    for(gmdt->crnt_player = 1;gmdt->crnt_player<=(gmdt->max_players);gmdt->crnt_player++)
     {
-        for(gmdt->crnt_player = 1;gmdt->crnt_player<=(gmdt->max_players);gmdt->crnt_player++)
+        clear();
+        printf("%Player %d's turn!\n",gmdt->crnt_player);
+        for(k=0;k<gmdt->max_players;k++)
         {
-            clear();
-            printf("%Player %d's turn!\n",gmdt->crnt_player);
-            for(k=0;k<gmdt->max_players;k++)
-            {
-                printf("P%d: %d\t", k+1, gmdt->scores[k]);
-            }
-            printf("\n");
-            print_map(gmdt->map,gmdt->rows,gmdt->columns);
-            move_penguin(gmdt,j,gmdt->crnt_player-1);
+            printf("P%d: %d\t", k+1, gmdt->scores[k]);
         }
+        printf("\n");
+        print_map(gmdt->map,gmdt->rows,gmdt->columns);
+        printf("\nThe coordinates of your penguins are:\n");
+        for(i = 0; i < gmdt->max_pngns; i++)
+            printf("%d: (%d, %d)\t", i, gmdt->pngns_pos[gmdt->crnt_player-1][i][0], gmdt->pngns_pos[gmdt->crnt_player-1][i][1]);
+        do{
+            printf("\nPlease input the index of the penguin: ");
+            scanf("%d", &j);
+        } while (j < 0 || j >= gmdt->max_pngns);
+        move_penguin(gmdt,j,gmdt->crnt_player-1);
     }
 }
 int count_points(int x,int y,struct Gmdt *gmdt)
