@@ -7,6 +7,7 @@
 //
 
 #include "display.h"
+#include "env.h"
 
 void print_map(char **data, int rows, int columns){
     printf("\n\n");
@@ -14,16 +15,16 @@ void print_map(char **data, int rows, int columns){
     printf("    ");
     for(j=0;j<columns;j++){
         if(!(j/10))
-            printf("%d   ",j);
+            clrprintf(YELLOW,BLACK,"%d   ",j);// little difference ;)
         else
-            printf("%d  ",j);
+            clrprintf(YELLOW, BLACK,"%d  ",j);
     }
     printf("\n\n");
     for(i=0;i<rows;i++){
         if(!(i/10))
-            printf("%d  ", i);
+            clrprintf(YELLOW,BLACK,"%d  ", i);
         else
-            printf("%d ", i);
+            clrprintf(YELLOW,BLACK,"%d ", i);
         if(!(i % 2))
             printf("  ");
         for(j=0;j<columns;j++){
