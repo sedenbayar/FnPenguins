@@ -53,9 +53,10 @@ int main(int argc, char* argv)
     // Player input here
     placement(&gmdt);
     gmdt.phase = 2;
-    while(1)
+    int good_to_go = 1 ;
+    while( good_to_go )
     {
-        a_turn(&gmdt);
+        good_to_go = a_turn(&gmdt);
     }
 
     // Free memory
