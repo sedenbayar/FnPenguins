@@ -141,7 +141,7 @@ int a_turn(struct Gmdt *gmdt)
         } while (j < 0 || j >= gmdt->max_pngns);
         move_penguin(gmdt,j,gmdt->crnt_player-1);
     }
-    if (is_move_Possible (*gmdt)) {
+    if (is_move_Possible (&gmdt)) {
         return(1) ;
     } else { 
         return (0) ;
