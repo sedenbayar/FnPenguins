@@ -46,7 +46,7 @@ void print_map(char **data, int rows, int columns, int crnt_player){
                     else if ((data[j][i]==96+crnt_player)||(data[j][i]==84+crnt_player)||
                        (data[j][i]==64+crnt_player))
                        {
-                      clrprintf(BLUE, BLACK,"%c   ",data[j][i]);
+                      clrprintf(GREEN, BLACK,"%c   ",data[j][i]);
                       break;
                        }
                     else
