@@ -10,7 +10,7 @@
 #define Y_FIX 0
 
 int count_points(int x,int y,struct Gmdt *gmdt);
-void a_turn(struct Gmdt *gmdt);  //single turn for all players, 1st player moves all of his pngns, then second one etc.
+int a_turn(struct Gmdt *gmdt);  //single turn for all players, 1st player moves all of his pngns, then second one etc.
 
 bool upleft(int dist,struct Gmdt *gmdt,int pg,int pl);
 bool left(int dist,struct Gmdt *gmdt,int pg,int pl);
@@ -114,7 +114,12 @@ bool move_penguin_ai(int dist,struct Gmdt *gmdt,int pg,int pl,int way)
     }
     return result;
 }
-void a_turn(struct Gmdt *gmdt)
+
+bool is_move_possible ( struct Gmdt *gmdt)
+{
+    return (1);
+}
+int a_turn(struct Gmdt *gmdt)
 {
     int j=0,k=0,i=0;
     for(gmdt->crnt_player = 1;gmdt->crnt_player<=(gmdt->max_players);gmdt->crnt_player++)
@@ -135,6 +140,11 @@ void a_turn(struct Gmdt *gmdt)
             scanf("%d", &j);
         } while (j < 0 || j >= gmdt->max_pngns);
         move_penguin(gmdt,j,gmdt->crnt_player-1);
+    }
+    if (is_move_Possible (*gmdt)) {
+        return(1) ;
+    } else { 
+        return (0) ;
     }
 }
 int count_points(int x,int y,struct Gmdt *gmdt)
